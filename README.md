@@ -13,12 +13,12 @@ The Bakery Database Project simulates the operations of a bakery business, cover
 
 # Key Features
 
-1. **Database Creation**
+## Database Creation
 * Created a fully normalized database named bakery, designed for optimal relational data management.
 
 
 
-2. **Table Design and Relationships:**
+## Table Design and Relationships:
 This includes:
 * Products: Contains bakery items, their stock levels, and pricing.
 * Suppliers: Tracks supplier details.
@@ -31,14 +31,14 @@ This includes:
 
 
 
-3. **Constraints and Relationships**
+## Constraints and Relationships
 * Enforced referential integrity through primary and foreign keys to ensure data integrity and proper relationships.
 * Implemented cascading updates for dynamic table relationships.
 * Added default values for specific columns.
 
 
 
-4. **Skills Demonstrated:**
+## Skills Demonstrated:
 * Advanced Database Design and Normalization
 * Advanced SQL Querying Techniques
 * Window Functions and Aggregations
@@ -51,7 +51,7 @@ This includes:
 
 
 
-5. **Comprehensive SQL Querying:**
+## Comprehensive SQL Querying:
 Included various queries for:
 * Data transformations
 * Analytical insights
@@ -62,13 +62,13 @@ Included various queries for:
 
 
 
-6. **Views**
+## Views
 Created views for streamlined querying and analysis:
 Example: vw_order_shipped combines customer orders and delivery details.
 
 
 
-7. **Project Files**
+## Project Files
 The repository contains the following key files:
 * [1_create_database.sql](1_create_database.sql): Code for database creation.
 * [2_create_tables.sql](2_create_tables.sql): Code for table creation with constraints.
@@ -78,13 +78,13 @@ The repository contains the following key files:
 
 
 
-8. **Tech Stack**
+## Tech Stack
 * Microsoft SQL Server: Used to design, populate, and query the database.
 * T-SQL (Transact-SQL): Primary language for database manipulation.
 
 
 
-9. **Installation**
+## Installation
 1.  Clone or download this repository.
 2.  Open Microsoft SQL Server Management Studio (SSMS).
 3.  Run the scripts in the following order:
@@ -95,10 +95,10 @@ The repository contains the following key files:
 
 
 
-10. **Acknowledgments**
+## Acknowledgments
 This project was inspired by the Bakery Database example designed by Analyst Builder. The conversion to T-SQL reflects an adaptation to SQL Server's structure and capabilities.
 
 
 
-11. **License**
+## License
 This code was created by Sandra Obanijesu under the GPL-3.0 license. Please feel free to use the resources as you deem fit.
