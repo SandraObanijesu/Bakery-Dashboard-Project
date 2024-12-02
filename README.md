@@ -9,9 +9,19 @@ This repository contains the Bakery Database Project, a database I reconstructed
 ## Project Overview
 The Bakery Database Project simulates the operations of a bakery business, covering aspects like inventory, customer management, supplier relationships, and financial data analysis. The project includes database creation, normalization, advanced querying, and view creation, demonstrating the versatility of SQL Server for handling relational data.
 
+# Table of Content
+* Database Creation
+* Table Design and Relationships
+* Constraints and Relationships
+* Skills Demonstrated
+* Comprehensive SQL Querying
+* Views
+* Project Files
+* Tech Stack
+* Installation
+* Acknowledgments
+* License
 
-
-# Key Features
 
 ## Database Creation
 * Created a fully normalized database named bakery, designed for optimal relational data management.
