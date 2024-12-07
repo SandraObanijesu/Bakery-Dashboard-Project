@@ -10,7 +10,6 @@ CREATE TABLE products (
   sale_price decimal(4,2) NOT NULL,
 )
 
-
 INSERT INTO products 
 VALUES 	('Chocolate Chip Cookie',200,1.50),
 		('Banana Nut Muffin',180,2.50),
@@ -22,6 +21,9 @@ VALUES 	('Chocolate Chip Cookie',200,1.50),
 		('Coffee Cake',25,13.00),
 		('Carrot Cake',15,14.50),
 		('Chocolate Covered Doughnut',80,1.00)
+
+SELECT * FROM products
+
 
 
 CREATE TABLE suppliers (
@@ -37,17 +39,22 @@ VALUES	('Bakery LLC'),
 		('Mrs. Yums'),
 		('Grain to Table LLC')
 
+SELECT * FROM suppliers
+
+
 
 CREATE TABLE supplier_delivery_status (
   order_status_id tinyint NOT NULL PRIMARY KEY,
   [name] varchar(50) NOT NULL
   )
 
-
 INSERT INTO supplier_delivery_status
 VALUES	(1,'Processed'),
 		 (2,'Shipped'),
 		(3,'Delivered');
+
+SELECT * FROM supplier_delivery_status
+
 
 
 CREATE TABLE ordered_items (
@@ -60,8 +67,6 @@ CREATE TABLE ordered_items (
   shipper_id smallint DEFAULT NULL FOREIGN KEY REFERENCES suppliers(supplier_id) ON UPDATE CASCADE,
   FOREIGN KEY(order_id) REFERENCES ordered_items(order_id)
 ) 
-
-
 
 INSERT INTO ordered_items
 VALUES  (1004,1,53,0.35,'2021-08-15',1),
@@ -83,6 +88,8 @@ VALUES  (1004,1,53,0.35,'2021-08-15',1),
 		(1001,1,33,0.29,'2022-01-06',1),
 		(1009,3,23,4.28,'2022-07-23',1)
 
+SELECT * FROM ordered_items
+
 
 
 CREATE TABLE customers (
@@ -97,7 +104,6 @@ CREATE TABLE customers (
   total_money_spent int NOT NULL DEFAULT 0
 ) 
 
-
 INSERT INTO customers
 VALUES  ('Kevin','Malone','1989-04-28','635-573-9754','1229 Main Street','Scranton','PA',11000),
 		('Charles','Xavier','1965-04-11','729-287-9456','123 North Hill Drive','Dallas','TX',947),
@@ -110,6 +116,8 @@ VALUES  ('Kevin','Malone','1989-04-28','635-573-9754','1229 Main Street','Scrant
 		('Kelly','Kapoor','1987-05-30','674-357-9151','62810 Julip Lane','Scranton','PA',540),
 		('Anakin','Skywalker','1934-10-15','346-458-3370','122 South Street','Charleston','SC',36)
 
+SELECT * FROM customers
+
 
 
 CREATE TABLE customer_orders(
@@ -120,8 +128,6 @@ CREATE TABLE customer_orders(
   order_tota decimal(4,2) NOT NULL,
   tip varchar(2000) DEFAULT NULL
 )
-
-
 
 INSERT INTO customer_orders 
 VALUES (100101,1001,'2020-01-30',26.24,2),
@@ -139,6 +145,9 @@ VALUES (100101,1001,'2020-01-30',26.24,2),
 		(100106,1008,'2020-06-08',90.42,0),
 		(100102,1009,'2022-07-05',11.11,1),
 		(100104,1006,'2020-04-22',24.12,3)
+
+SELECT * FROM customer_orders
+
 
 
 
@@ -166,6 +175,9 @@ VALUES  (100101,1001,'2020-01-30',8),
 		(100102,1009,'2023-07-05',8),
 		(100104,1006,'2020-04-22',7)
 
+SELECT * FROM customer_orders_review
+
+
 
 CREATE TABLE employees (
   employee_id int NOT NULL PRIMARY KEY IDENTITY(1,1),
@@ -187,10 +199,10 @@ VALUES  ('Christine','Freberg','Bakery','Lead Baker', 70000),
 		('Jeff','Winger','Marketing','Marketing Analyst', 60000),
 		('Annie','Edison','Marketing','Social Media Marketer', 65000)
 
+SELECT * FROM employees
 
 
 SELECT TOP 5 * FROM customers
-
 
 select LOWER(LEFT(first_name,1))lowername, 
  REPLACE(First_name, LEFT(First_name,1), LOWER(LEFT(first_name,1)))newname_ ,first_name
@@ -275,8 +287,8 @@ SELECT GETDATE()today, DATENAME(weekday, GETDATE())weekname
 SELECT * FROM [dbo].[customer_orders]
 SELECT * FROM [dbo].[ordered_items]
 
-CREATE VIEW vw_order_shipped
-AS
+
+CREATE VIEW vw_order_shipped AS
 SELECT o.*, co.customer_id, Order_date FROM ordered_items o
 LEFT JOIN customer_orders co 
 ON co.order_id = o.order_id
@@ -633,7 +645,9 @@ SET [Are_you_over_18] = CASE
 	ELSE [Are_you_over_18]
 END
 
-SELECT address, CHARINDEX(',', address), RIGHT(address, CHARINDEX(',' , address)) FROM customer_sweepstakes
+
+SELECT address, CHARINDEX(',', address)textindex,
+RIGHT(address, CHARINDEX(',' , address)) FROM customer_sweepstakes
 
 SELECT address, 
 SUBSTRING(address, CHARINDEX(',', address) +1, LEN(address) -  CHARINDEX(',', address))citystate,
@@ -666,7 +680,10 @@ ALTER TABLE customer_sweepstakes
 ADD state VARCHAR(4)
 
 SELECT * FROM customer_sweepstakes
+SELECT * FROM customer_sweepstakes_staging
 
+SELECT address FROM customer_sweepstakes
+SELECT address FROM customer_sweepstakes_staging
 UPDATE customer_sweepstakes
 SET street = TRIM(LEFT(address, CHARINDEX(',' , address)-1))
 
@@ -698,7 +715,7 @@ FROM customer_sweepstakes
 
 
 UPDATE customer_sweepstakes
-SET  = [Are_you_over_18]
+SET   [Are_you_over_18] =
 CASE
 	WHEN YEAR(GETDATE()) - YEAR(birth_date) > 18 THEN 'Y'
 	WHEN YEAR(GETDATE()) - YEAR(birth_date) < 18 THEN 'N'

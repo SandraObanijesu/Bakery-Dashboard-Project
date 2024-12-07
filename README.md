@@ -20,14 +20,15 @@ The Bakery Database Project simulates the operations of a bakery business, cover
 
 ## Table Design and Relationships:
 This includes:
-* Products: Contains bakery items, their stock levels, and pricing.
-* Suppliers: Tracks supplier details.
-* Supplier Delivery Status: Manages delivery statuses for supplier orders.
-* Ordered Items: Links products to their delivery and status, incorporating cascading updates.
-* Customers: Maintains customer profiles, including personal and contact information.
-* Customer Orders: Tracks customer purchases, order totals, and optional tips.
-* Customer Orders Review: Stores customer ratings for specific orders.
-* Employees: Manages employee details, including department, title, and salary.
+* **Products:** Contains bakery items, their stock levels, and pricing.
+* **Suppliers:** Tracks supplier details.
+* **Supplier Delivery Status:** Manages delivery statuses for supplier orders.
+* **Ordered Items:** Links products to their delivery and status, incorporating cascading updates.
+* **Customers:** Maintains customer profiles, including personal and contact information.
+* **Customer Orders:** Tracks customer purchases, order totals, and optional tips.
+* **Customer Orders Review:** Stores customer ratings for specific orders.
+* **Customer Sweepstakes:** Contains additional informations of the customers
+* **Employees:** Manages employee details, including department, title, and salary.
 
 
 
