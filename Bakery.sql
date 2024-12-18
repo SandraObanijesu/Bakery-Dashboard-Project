@@ -1,4 +1,4 @@
-
+--Data Definition Language (DDL) , Data Manipulation Language(DML) and Constraints
 CREATE DATABASE bakery;
 
 USE bakery
@@ -204,7 +204,9 @@ SELECT * FROM employees
 
 SELECT TOP 5 * FROM customers
 
-select LOWER(LEFT(first_name,1))lowername, 
+
+--String Functions
+SELECT LOWER(LEFT(first_name,1))lowername, 
  REPLACE(First_name, LEFT(First_name,1), LOWER(LEFT(first_name,1)))newname_ ,first_name
  from customers
 
@@ -287,7 +289,7 @@ SELECT GETDATE()today, DATENAME(weekday, GETDATE())weekname
 SELECT * FROM [dbo].[customer_orders]
 SELECT * FROM [dbo].[ordered_items]
 
-
+--Views
 CREATE VIEW vw_order_shipped AS
 SELECT o.*, co.customer_id, Order_date FROM ordered_items o
 LEFT JOIN customer_orders co 
@@ -295,6 +297,8 @@ ON co.order_id = o.order_id
 
 SELECT * from vw_order_shipped
 
+
+--Date Functions
 SELECT Order_date, shipped_date, DATEDIFF(MONTH, Order_date, shipped_date)Monthtodeliver,
 DATENAME(dw, shipped_date)deliveryDay,
 DATENAME(MONTH,shipped_date)deliverymonth
@@ -338,6 +342,8 @@ END AS agecategory
 FROM customers
 
 
+
+--Conditional logic (IIF Function)
 SELECT first_name,
 Last_name,
 department, 
@@ -348,6 +354,8 @@ FROM employees
 SELECT * FROM customers
 SELECT * FROM employees
 
+
+--Aggregate , Union  and Grouping Sets Functions
 SELECT city,
 state, 
 SUM(total_money_spent)Total_spending
@@ -434,6 +442,8 @@ SELECT * FROM [customer_orders]
  SELECT order_date, YEAR(order_date),  YEAR(GETDATE()) -1, DAY(GETDATE())
  FROM [customer_orders]
 
+
+ --Window Functions
 SELECT *, ROW_NUMBER() OVER(PARTITION BY customer_id ORDER BY customer_id)Rownumber
 FROM customer_orders
 
@@ -496,9 +506,6 @@ LEAD(units_in_stock,1,0) OVER(ORDER BY product_id)forward,
 LAG(units_in_stock,1,0) OVER(ORDER BY product_id)back
 FROM Products
 
-
-
-
 SELECT * FROM customer_sweepstakes_staging
 
 SELECT * 
@@ -507,7 +514,6 @@ FROM customer_sweepstakes_staging
 
 SELECT * FROM customer_sweepstakes
 
---data cleaning and standardizing
 
 SELECT * FROM customer_sweepstakes
 
@@ -532,7 +538,7 @@ WHERE sweepstake_id IN (
 						FROM  customer_sweepstakes)row_table
 					WHERE row_num > 1)
 
-
+--Data Cleaning and Standardizing
 SELECT phone,  REPLACE(phone, '-', ' '), 
 REPLACE(phone, '(', ' '),
 REPLACE(phone, ')', ' '),
@@ -576,8 +582,8 @@ SELECT phone, LTRIM(phone) FROM customer_sweepstakes
 SELECT birth_date FROM  customer_sweepstakes
 
 
---ALTER TABLE customer_sweepstakes
---ALTER COLUMN birth_date DATE
+ALTER TABLE customer_sweepstakes
+ALTER COLUMN birth_date DATE
 
 SELECT birth_date FROM  customer_sweepstakes
 WHERE ISDATE(birth_date) = 0
@@ -777,6 +783,8 @@ SELECT * FROM suppliers
 
 SELECT * FROM customer_orders
 
+
+--Joins
 SELECT [name],
 SUM(order_total)Total_amount
 FROM suppliers s
@@ -785,6 +793,7 @@ JOIN ordered_items oi
 JOIN customer_orders co
 	ON oi.order_id = co.order_id
 GROUP BY [name]
+
 
 SELECT *
 --count(*), SUM(order_total)Total_amount
@@ -819,6 +828,7 @@ JOIN employees e2
 	ON e1.employee_id +1 = e2.employee_id
 
 
+--Subqueries
 SELECT first_name, Salary FROM (
 	SELECT first_name,
 	salary,
@@ -921,6 +931,8 @@ IIf( title LIKE '%Mark%',
 FROM employees
 
 
+
+--Conditional logic (CASE Statement)
 SELECT * ,
 CASE
 WHEN title LIKE '%Mark%' THEN STUFF(title, PATINDEX('%mark%', title) , LEN(title) , 'Sales')
@@ -937,6 +949,8 @@ WHERE sale_price % 2 = 0     --even price
 SELECT * FROM ordered_items
 SELECT * FROM products
 
+
+--Null Function
 SELECT product_name,
 units_in_stock inventory,
 quantity quantity_sold,
@@ -986,6 +1000,7 @@ DENSE_RANK() OVER( ORDER BY salary DESC) dense_ranking
 FROM employees;
 
 
+--WITH Statement (CTE)
 WITH cte_salary 
 AS(
   SELECT *,
