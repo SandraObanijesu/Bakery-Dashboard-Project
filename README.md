@@ -11,7 +11,18 @@ The Bakery Database Project simulates the operations of a bakery business, cover
 
 
 
-# Key Features
+# Table of Content
+* Database Creation
+* Table Design and Relationships
+* Constraints and Relationships
+* Skills Demonstrated
+* Comprehensive SQL Querying
+* Views
+* Project Files
+* Tech Stack
+* Installation
+* Acknowledgments
+* License
 
 ## Database Creation
 * Created a fully normalized database named bakery, designed for optimal relational data management.
